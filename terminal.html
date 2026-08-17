@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>命令提示符 - work.exe（并查集实验运行过程）</title>
+<!--
+  ============================================================
+  使用说明（本段是注释，页面上看不到）：
+  1. 本页面模拟 Windows 命令提示符，展示 work.cpp 的运行过程
+  2. 绿色文字 = 你输入的数据；白色文字 = 程序输出的结果
+  3. 想换成你自己跑出来的数据：
+     ① 在 Code::Blocks 里运行 work.exe，把整个过程复制下来
+     ② 用记事本打开本文件，找到 <div class="console"> 和 </div> 之间
+     ③ 把内容替换成你复制的内容（输入的行前后加上
+        <span class="input"> 和 </span> 即可变成绿色）
+  ============================================================
+-->
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1e1e1e;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 30px 20px;
+    font-family: Consolas, 'Courier New', monospace;
+  }
+  .window {
+    width: 900px;
+    max-width: 100%;
+    background: #0c0c0c;
+    border: 1px solid #565656;
+    border-radius: 6px;
+    box-shadow: 0 12px 40px rgba(0,0,0,.65);
+    overflow: hidden;
+  }
+  /* 蓝色标题栏，模仿 cmd 窗口顶部 */
+  .titlebar {
+    background: linear-gradient(#0c59b9, #063a80);
+    color: #fff;
+    padding: 7px 12px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+  .titlebar .btns span {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    margin-left: 5px;
+    border-radius: 50%;
+  }
+  .btns .min  { background: #f2b134; }
+  .btns .max  { background: #2fa84f; }
+  .btns .close{ background: #e74c3c; }
+  /* 终端显示区 */
+  .console {
+    padding: 14px 16px 18px;
+    color: #cccccc;
+    font-size: 14px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  .input { color: #6ee06e; }          /* 用户输入：绿色高亮 */
+  .path  { color: #6ee06e; }          /* cmd 路径提示符 */
+  .title-out { color: #ffffff; font-weight: bold; }  /* 大标题输出加粗 */
+  /* 闪烁光标 */
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background: #fff;
+    vertical-align: -2px;
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+</style>
+</head>
+<body>
+<div class="window">
+  <div class="titlebar">
+    <span>■ 命令提示符 - work.exe（并查集实验）</span>
+    <span class="btns"><span class="min"></span><span class="max"></span><span class="close"></span></span>
+  </div>
+  <div class="console">Microsoft Windows [版本 10.0.22631]
+(c) Microsoft Corporation。保留所有权利。
+
+<span class="path">C:\Users\Lenovo\Desktop\chabingji&gt;work.exe</span>
+
+<span class="title-out">========== 并查集的基本操作（选项 1~5 共用同一个并查集）==========</span>
+1. 初始化并查集
+2. 合并两个元素所在的集合
+3. 查找元素所在的集合
+4. 获取集合的个数
+5. 打印所有集合
+<span class="title-out">========= 并查集的应用（选项 6~8 独立演示，自带数据）=========</span>
+6. 统计省份数量（统计连通块个数）
+7. 判断图里有没有环（无向图判断环）
+8. Kruskal 最小生成树
+0. 退出
+<span class="input">1</span>
+请输入并查集的大小 n：<span class="input">6</span>
+并查集初始化完成！6 个元素目前各自成团：
+集合{根=0}: 0 
+集合{根=1}: 1 
+集合{根=2}: 2 
+集合{根=3}: 3 
+集合{根=4}: 4 
+集合{根=5}: 5 
+<span class="input">2</span>
+请输入要合并的两个元素 x 和 y：<span class="input">0 1</span>
+已合并 0 和 1，现在的集合如下：
+集合{根=0}: 0 1 
+集合{根=2}: 2 
+集合{根=3}: 3 
+集合{根=4}: 4 
+集合{根=5}: 5 
+<span class="input">2</span>
+请输入要合并的两个元素 x 和 y：<span class="input">1 2</span>
+已合并 1 和 2，现在的集合如下：
+集合{根=0}: 0 1 2 
+集合{根=3}: 3 
+集合{根=4}: 4 
+集合{根=5}: 5 
+<span class="input">2</span>
+请输入要合并的两个元素 x 和 y：<span class="input">3 4</span>
+已合并 3 和 4，现在的集合如下：
+集合{根=0}: 0 1 2 
+集合{根=3}: 3 4 
+集合{根=5}: 5 
+<span class="input">3</span>
+请输入要查找的元素 b：<span class="input">2</span>
+元素 2 的根是：0
+它所在的集合是：{ 0 1 2 }
+<span class="input">4</span>
+当前集合的个数为：3
+<span class="input">5</span>
+当前所有集合如下：
+集合{根=0}: 0 1 2 
+集合{根=3}: 3 4 
+集合{根=5}: 5 
+<span class="input">6</span>
+请输入城市数量 n：<span class="input">4</span>
+请输入城市之间的连接关系（邻接矩阵，一行行输入）：
+<span class="input">1 1 0 0</span>
+<span class="input">1 1 1 0</span>
+<span class="input">0 1 1 0</span>
+<span class="input">0 0 0 1</span>
+这 4 个城市一共分成 2 个省份
+每个省份里都有哪些城市：
+集合{根=0}: 0 1 2 
+集合{根=3}: 3 
+<span class="input">7</span>
+请输入图的顶点数 n：<span class="input">4</span>
+请输入图的边数 m：<span class="input">4</span>
+请输入每条边的两个端点 u 和 v：
+<span class="input">0 1</span>
+<span class="input">1 2</span>
+<span class="input">2 0</span>
+<span class="input">2 3</span>
+边 2-0 让图出现了环
+结论：图里有环
+<span class="input">8</span>
+请输入图的顶点数 n：<span class="input">4</span>
+请输入图的边数 m：<span class="input">5</span>
+请输入每条边的起点、终点和权值：
+<span class="input">0 1 10</span>
+<span class="input">0 2 6</span>
+<span class="input">0 3 5</span>
+<span class="input">1 3 15</span>
+<span class="input">2 3 4</span>
+Kruskal 最小生成树的边如下：
+边 2-3 权值 4
+边 0-3 权值 5
+边 0-1 权值 10
+最小生成树的总权值为：19
+程序已退出，再见！
+<span class="path">C:\Users\Lenovo\Desktop\chabingji&gt;</span><span class="cursor"></span>
